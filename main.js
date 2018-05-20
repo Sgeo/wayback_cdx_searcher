@@ -28,6 +28,13 @@ document.getElementById("search").addEventListener('submit', function(evt) {
             var link = document.createElement("a");
             link.href = archiveURL;
             link.textContent = original;
+            if(statuscode[0] === "2") {
+                link.classList.add("ok");
+            } else if(statuscode[0] === "3") {
+                link.classList.add("redir");
+            } else {
+                link.classList.add("bad");
+            }
             
             var row = table.insertRow();
             row.insertCell().appendChild(link);
