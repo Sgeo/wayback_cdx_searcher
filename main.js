@@ -2,10 +2,8 @@ document.getElementById("search").addEventListener('submit', function(evt) {
     evt.preventDefault();
     var resultsDOM = document.getElementById("results");
     var domain = document.getElementById("domain").value;
-    var filepart = document.getElementById("filepart").value;
     var ext = document.getElementById("ext").value;
-    var regex = "(?i)" + ".*/[^/]*" + filepart + "[^/]*\\." + ext + "(\\?.*)?";
-    var url = "https://web.archive.org/cdx/search/cdx?output=json&fl=original,timestamp,mimetype,statuscode,length&url=" + encodeURIComponent(domain) + "&matchType=domain&filter=original:" + encodeURIComponent(regex);
+    var url = "https://web.archive.org/cdx/search/cdx?output=json&fl=original,timestamp,mimetype,statuscode,length&url=" + encodeURIComponent(domain) + "&matchType=domain&filter=original:" + encodeURIComponent("(?i).*\\." + ext + "(\\?.*)?");
     console.log(url);
     var xhr = new XMLHttpRequest();
     xhr.addEventListener("load", function() {
